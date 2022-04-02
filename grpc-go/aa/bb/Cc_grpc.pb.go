@@ -14,86 +14,86 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// DdddClient is the client API for Dddd service.
+// CcClient is the client API for Cc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type DdddClient interface {
-	SayHello22(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error)
+type CcClient interface {
+	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error)
 }
 
-type ddddClient struct {
+type ccClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewDdddClient(cc grpc.ClientConnInterface) DdddClient {
-	return &ddddClient{cc}
+func NewCcClient(cc grpc.ClientConnInterface) CcClient {
+	return &ccClient{cc}
 }
 
-func (c *ddddClient) SayHello22(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error) {
+func (c *ccClient) SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error) {
 	out := new(HelloReply)
-	err := c.cc.Invoke(ctx, "/aa.bb.Dddd/SayHello22", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/aa.bb.Cc/SayHello", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// DdddServer is the server API for Dddd service.
-// All implementations must embed UnimplementedDdddServer
+// CcServer is the server API for Cc service.
+// All implementations must embed UnimplementedCcServer
 // for forward compatibility
-type DdddServer interface {
-	SayHello22(context.Context, *HelloRequest) (*HelloReply, error)
-	mustEmbedUnimplementedDdddServer()
+type CcServer interface {
+	SayHello(context.Context, *HelloRequest) (*HelloReply, error)
+	mustEmbedUnimplementedCcServer()
 }
 
-// UnimplementedDdddServer must be embedded to have forward compatible implementations.
-type UnimplementedDdddServer struct {
+// UnimplementedCcServer must be embedded to have forward compatible implementations.
+type UnimplementedCcServer struct {
 }
 
-func (UnimplementedDdddServer) SayHello22(context.Context, *HelloRequest) (*HelloReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SayHello22 not implemented")
+func (UnimplementedCcServer) SayHello(context.Context, *HelloRequest) (*HelloReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SayHello not implemented")
 }
-func (UnimplementedDdddServer) mustEmbedUnimplementedDdddServer() {}
+func (UnimplementedCcServer) mustEmbedUnimplementedCcServer() {}
 
-// UnsafeDdddServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to DdddServer will
+// UnsafeCcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CcServer will
 // result in compilation errors.
-type UnsafeDdddServer interface {
-	mustEmbedUnimplementedDdddServer()
+type UnsafeCcServer interface {
+	mustEmbedUnimplementedCcServer()
 }
 
-func RegisterDdddServer(s grpc.ServiceRegistrar, srv DdddServer) {
-	s.RegisterService(&Dddd_ServiceDesc, srv)
+func RegisterCcServer(s grpc.ServiceRegistrar, srv CcServer) {
+	s.RegisterService(&Cc_ServiceDesc, srv)
 }
 
-func _Dddd_SayHello22_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Cc_SayHello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(HelloRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DdddServer).SayHello22(ctx, in)
+		return srv.(CcServer).SayHello(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aa.bb.Dddd/SayHello22",
+		FullMethod: "/aa.bb.Cc/SayHello",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DdddServer).SayHello22(ctx, req.(*HelloRequest))
+		return srv.(CcServer).SayHello(ctx, req.(*HelloRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Dddd_ServiceDesc is the grpc.ServiceDesc for Dddd service.
+// Cc_ServiceDesc is the grpc.ServiceDesc for Cc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Dddd_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "aa.bb.Dddd",
-	HandlerType: (*DdddServer)(nil),
+var Cc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "aa.bb.Cc",
+	HandlerType: (*CcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SayHello22",
-			Handler:    _Dddd_SayHello22_Handler,
+			MethodName: "SayHello",
+			Handler:    _Cc_SayHello_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
