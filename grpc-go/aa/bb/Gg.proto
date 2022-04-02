@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package aa.bb;
+
+option go_package="github.com/rainggo/test20220402/grpc-go/aa/bb";
+
+
+service GgService {
+    rpc SayHelloFor (HelloRequest) returns (HelloReply);
+}
+
+
+message HelloRequest {
+    string msg = 1;
+}
+message HelloReply {
+    string msg = 1;
+    string code = 2;
+}
