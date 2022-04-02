@@ -5,8 +5,8 @@ package aa.bb;
 option go_package="github.com/rainggo/test20220402/grpc-go/aa/bb";
 
 
-service Cc {
-    rpc SayHello (HelloRequest) returns (HelloReply);
+service Ff33 {
+    rpc SayHello333 (HelloRequest) returns (HelloReply);
 }
 
 
