@@ -12,7 +12,7 @@ message HelloReply {
     string code = 2;
 }
 
-service Eeee {
+service Eeeee {
     rpc SayHello (HelloRequest) returns (HelloReply);
 }
 
